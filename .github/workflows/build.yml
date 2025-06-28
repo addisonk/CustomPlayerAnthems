@@ -1,0 +1,73 @@
+name: Optimized BakkesMod Plugin Build
+
+on:
+  push:
+    paths: 
+      - 'CustomPlayerAnthems/**'
+      - '.github/workflows/**'
+      - '*.vcxproj'
+      - '*.sln'
+    branches: [ main ]
+  pull_request:
+    paths:
+      - 'CustomPlayerAnthems/**' 
+      - '.github/workflows/**'
+      - '*.vcxproj'
+      - '*.sln'
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # 🚀 OPTIMIZED: Cache BakkesMod SDK (saves 2-3 minutes per build)
+    - name: Cache BakkesMod SDK
+      uses: actions/cache@v3
+      with:
+        path: BakkesModSDK-master
+        key: bakkesmod-sdk-${{ hashFiles('**/build.yml') }}
+        restore-keys: bakkesmod-sdk-
+    
+    # 🚀 OPTIMIZED: Cache Build Dependencies
+    - name: Cache Build Dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          x64/
+          Debug/
+          Release/
+        key: build-cache-${{ hashFiles('**/CustomPlayerAnthems.vcxproj') }}
+        restore-keys: build-cache-
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+    
+    - name: Setup VS Dev Environment
+      uses: seanmiddleditch/gha-setup-vsdevenv@master
+    
+    # Download BakkesMod SDK with caching
+    - name: Setup BakkesMod SDK
+      run: |
+        if (!(Test-Path "BakkesModSDK-master")) {
+          curl -L -o bmsdk.zip https://github.com/bakkesmodorg/BakkesModSDK/archive/refs/heads/master.zip
+          unzip bmsdk.zip
+        }
+        echo "BAKKESMODSDK=$(pwd)/BakkesModSDK-master" >> $env:GITHUB_ENV
+    
+    - name: Build Plugin
+      run: |
+        msbuild CustomPlayerAnthems.vcxproj /p:Configuration=Release /p:Platform=x64
+    
+    # 🚀 OPTIMIZED: Upload with commit SHA for unique naming
+    - name: Upload Plugin Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: CustomPlayerAnthems-Release-${{ github.sha }}
+        path: |
+          x64/Release/*.dll
+          x64/Release/*.set
+          plugins/*.dll
+          plugins/*.set
