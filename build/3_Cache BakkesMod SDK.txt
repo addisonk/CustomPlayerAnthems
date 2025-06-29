@@ -1,0 +1,11 @@
+﻿2025-06-29T18:49:33.7127724Z ##[group]Run actions/cache@v4
+2025-06-29T18:49:33.7128076Z with:
+2025-06-29T18:49:33.7128265Z   path: BakkesModSDK-master
+2025-06-29T18:49:33.7128657Z   key: bakkesmod-sdk-a7cda41cd0e965a4dc8ce0e78afb59f717224b85ebfe6e36bd00536efad66af9
+2025-06-29T18:49:33.7129075Z   restore-keys: bakkesmod-sdk-
+2025-06-29T18:49:33.7129323Z   enableCrossOsArchive: false
+2025-06-29T18:49:33.7129539Z   fail-on-cache-miss: false
+2025-06-29T18:49:33.7130576Z   lookup-only: false
+2025-06-29T18:49:33.7130818Z   save-always: false
+2025-06-29T18:49:33.7131026Z ##[endgroup]
+2025-06-29T18:49:34.4506497Z Cache not found for input keys: bakkesmod-sdk-a7cda41cd0e965a4dc8ce0e78afb59f717224b85ebfe6e36bd00536efad66af9, bakkesmod-sdk-

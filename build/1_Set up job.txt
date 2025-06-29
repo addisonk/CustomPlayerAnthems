@@ -1,0 +1,42 @@
+﻿2025-06-29T18:49:26.4552981Z Current runner version: '2.325.0'
+2025-06-29T18:49:26.5698010Z ##[group]Operating System
+2025-06-29T18:49:26.5698855Z Microsoft Windows Server 2022
+2025-06-29T18:49:26.5699551Z 10.0.20348
+2025-06-29T18:49:26.5700209Z Datacenter
+2025-06-29T18:49:26.5700928Z ##[endgroup]
+2025-06-29T18:49:26.5701561Z ##[group]Runner Image
+2025-06-29T18:49:26.5702113Z Image: windows-2022
+2025-06-29T18:49:26.5702562Z Version: 20250623.1.0
+2025-06-29T18:49:26.5703733Z Included Software: https://github.com/actions/runner-images/blob/win22/20250623.1/images/windows/Windows2022-Readme.md
+2025-06-29T18:49:26.5706160Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20250623.1
+2025-06-29T18:49:26.5707705Z ##[endgroup]
+2025-06-29T18:49:26.5708480Z ##[group]Runner Image Provisioner
+2025-06-29T18:49:26.5709333Z 2.0.437.1
+2025-06-29T18:49:26.5709992Z ##[endgroup]
+2025-06-29T18:49:26.5711719Z ##[group]GITHUB_TOKEN Permissions
+2025-06-29T18:49:26.5714276Z Contents: read
+2025-06-29T18:49:26.5715682Z Metadata: read
+2025-06-29T18:49:26.5716128Z Packages: read
+2025-06-29T18:49:26.5716557Z ##[endgroup]
+2025-06-29T18:49:26.5719100Z Secret source: Actions
+2025-06-29T18:49:26.5720177Z Prepare workflow directory
+2025-06-29T18:49:26.6118129Z Prepare all required actions
+2025-06-29T18:49:26.6159795Z Getting action download info
+2025-06-29T18:49:26.8670039Z ##[group]Download immutable action package 'actions/checkout@v4'
+2025-06-29T18:49:26.8671225Z Version: 4.2.2
+2025-06-29T18:49:26.8672202Z Digest: sha256:ccb2698953eaebd21c7bf6268a94f9c26518a7e38e27e0b83c1fe1ad049819b1
+2025-06-29T18:49:26.8673329Z Source commit SHA: 11bd71901bbe5b1630ceea73d27597364c9af683
+2025-06-29T18:49:26.8674110Z ##[endgroup]
+2025-06-29T18:49:27.0965566Z ##[group]Download immutable action package 'actions/cache@v4'
+2025-06-29T18:49:27.0966442Z Version: 4.2.3
+2025-06-29T18:49:27.0967215Z Digest: sha256:c8a3bb963e1f1826d8fcc8d1354f0dd29d8ac1db1d4f6f20247055ae11b81ed9
+2025-06-29T18:49:27.0968228Z Source commit SHA: 5a3ec84eff668545956fd18022155c47e93e2684
+2025-06-29T18:49:27.0968944Z ##[endgroup]
+2025-06-29T18:49:27.2549503Z Download action repository 'microsoft/setup-msbuild@v2' (SHA:6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce)
+2025-06-29T18:49:27.5207749Z Download action repository 'ilammy/msvc-dev-cmd@v1' (SHA:0b201ec74fa43914dc39ae48a89fd1d8cb592756)
+2025-06-29T18:49:27.6774596Z ##[group]Download immutable action package 'actions/upload-artifact@v4'
+2025-06-29T18:49:27.6775442Z Version: 4.6.2
+2025-06-29T18:49:27.6776197Z Digest: sha256:290722aa3281d5caf23d0acdc3dbeb3424786a1a01a9cc97e72f147225e37c38
+2025-06-29T18:49:27.6777128Z Source commit SHA: ea165f8d65b6e75b540449e92b4886f43607fa02
+2025-06-29T18:49:27.6777771Z ##[endgroup]
+2025-06-29T18:49:28.1130212Z Complete job name: build

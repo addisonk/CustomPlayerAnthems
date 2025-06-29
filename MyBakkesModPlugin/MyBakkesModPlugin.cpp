@@ -72,7 +72,36 @@ void MyBakkesModPlugin::OnGoalScored(std::string eventName)
 // PluginSettingsWindow Implementation
 void MyBakkesModPlugin::RenderSettings()
 {
-    ImGui::Text("Hello World Plugin Settings");
+    // Main Hello World Display
+    ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Hello, World!");
+    ImGui::Separator();
+    
+    ImGui::Text("Welcome to the Hello World Plugin!");
+    ImGui::Text("This is your Hello World window, accessible through BakkesMod settings.");
+    
+    ImGui::Spacing();
+    
+    // Interactive Hello World elements
+    ImGui::Text("Goal Counter: %d", helloWorldCounter);
+    
+    if (ImGui::Button("Reset Counter"))
+    {
+        helloWorldCounter = 0;
+        LOG("Hello World counter reset");
+    }
+    
+    ImGui::SameLine();
+    if (ImGui::Button("Increment Counter"))
+    {
+        helloWorldCounter++;
+        LOG("Hello World counter incremented to " + std::to_string(helloWorldCounter));
+    }
+    
+    ImGui::Spacing();
+    ImGui::Separator();
+    
+    // Plugin Settings
+    ImGui::Text("Plugin Settings");
     ImGui::Separator();
     
     // Enable/disable plugin
@@ -80,23 +109,18 @@ void MyBakkesModPlugin::RenderSettings()
         cvarManager->getCvar("helloworld_enabled").setValue(pluginEnabled);
     }
     
-    // Toggle Hello World window
-    if (ImGui::Checkbox("Show Hello World Window", &showHelloWorldWindow)) {
+    // Toggle standalone window (if it works)
+    if (ImGui::Checkbox("Show Standalone Window", &showHelloWorldWindow)) {
         cvarManager->getCvar("helloworld_show_window").setValue(showHelloWorldWindow);
     }
     
-    // Example float slider
-    if (ImGui::SliderFloat("Example Float", &exampleFloat, 0.0f, 10.0f)) {
-        // This is just for demonstration
-    }
-    
-    // Control buttons
-    ImGui::Separator();
-    if (ImGui::Button("Show Hello World Window")) {
+    // Control buttons for standalone window
+    ImGui::Spacing();
+    if (ImGui::Button("Test Standalone Window")) {
         cvarManager->executeCommand("helloworld_show");
     }
     ImGui::SameLine();
-    if (ImGui::Button("Hide Hello World Window")) {
+    if (ImGui::Button("Hide Standalone Window")) {
         cvarManager->executeCommand("helloworld_hide");
     }
     
@@ -104,15 +128,16 @@ void MyBakkesModPlugin::RenderSettings()
     ImGui::Separator();
     ImGui::Text("Status: %s", statusMessage.c_str());
     ImGui::Text("Plugin Version: %s", plugin_version);
-    ImGui::Text("Hello World Counter: %d", helloWorldCounter);
+    ImGui::Text("Plugin Status: %s", pluginEnabled ? "Enabled" : "Disabled");
     
     // Instructions
     ImGui::Separator();
-    ImGui::TextColored(ImVec4(0.5f, 0.8f, 1.0f, 1.0f), "Hello World Plugin Instructions:");
-    ImGui::BulletText("Use 'helloworld_toggle' command to toggle the window");
-    ImGui::BulletText("Use 'helloworld_show' command to show the window");
-    ImGui::BulletText("Use 'helloworld_hide' command to hide the window");
-    ImGui::BulletText("The window works in all game modes!");
+    ImGui::TextColored(ImVec4(0.5f, 0.8f, 1.0f, 1.0f), "How to Use:");
+    ImGui::BulletText("This settings window IS your Hello World window!");
+    ImGui::BulletText("Access it anytime via BakkesMod Settings > Plugins > Hello World Plugin");
+    ImGui::BulletText("Try console commands: 'helloworld_toggle', 'helloworld_show', 'helloworld_hide'");
+    ImGui::BulletText("The goal counter auto-increments when goals are scored!");
+    ImGui::BulletText("Works in all game modes: Freeplay, Training, Spectator, Replay");
 }
 
 std::string MyBakkesModPlugin::GetPluginName()

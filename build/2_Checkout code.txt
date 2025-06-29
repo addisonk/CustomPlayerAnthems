@@ -1,0 +1,57 @@
+﻿2025-06-29T18:49:28.2248568Z ##[group]Run actions/checkout@v4
+2025-06-29T18:49:28.2249883Z with:
+2025-06-29T18:49:28.2250609Z   repository: addisonk/CustomPlayerAnthems
+2025-06-29T18:49:28.2251751Z   token: ***
+2025-06-29T18:49:28.2252403Z   ssh-strict: true
+2025-06-29T18:49:28.2253114Z   ssh-user: git
+2025-06-29T18:49:28.2253809Z   persist-credentials: true
+2025-06-29T18:49:28.2254581Z   clean: true
+2025-06-29T18:49:28.2255270Z   sparse-checkout-cone-mode: true
+2025-06-29T18:49:28.2256103Z   fetch-depth: 1
+2025-06-29T18:49:28.2256755Z   fetch-tags: false
+2025-06-29T18:49:28.2257453Z   show-progress: true
+2025-06-29T18:49:28.2258172Z   lfs: false
+2025-06-29T18:49:28.2258804Z   submodules: false
+2025-06-29T18:49:28.2259497Z   set-safe-directory: true
+2025-06-29T18:49:28.2260455Z ##[endgroup]
+2025-06-29T18:49:28.9993311Z Syncing repository: addisonk/CustomPlayerAnthems
+2025-06-29T18:49:29.0226796Z ##[group]Getting Git version info
+2025-06-29T18:49:29.0228086Z Working directory is 'D:\a\CustomPlayerAnthems\CustomPlayerAnthems'
+2025-06-29T18:49:29.2865545Z [command]"C:\Program Files\Git\bin\git.exe" version
+2025-06-29T18:49:29.4103509Z git version 2.50.0.windows.1
+2025-06-29T18:49:29.4116643Z ##[endgroup]
+2025-06-29T18:49:29.4365669Z Temporarily overriding HOME='D:\a\_temp\0d910651-4c07-425b-b488-3ebbe860c7a1' before making global git config changes
+2025-06-29T18:49:29.4367893Z Adding repository directory to the temporary git global config as a safe directory
+2025-06-29T18:49:29.4383265Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\CustomPlayerAnthems\CustomPlayerAnthems
+2025-06-29T18:49:29.5058750Z Deleting the contents of 'D:\a\CustomPlayerAnthems\CustomPlayerAnthems'
+2025-06-29T18:49:29.5064428Z ##[group]Initializing the repository
+2025-06-29T18:49:29.5074513Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\CustomPlayerAnthems\CustomPlayerAnthems
+2025-06-29T18:49:29.5873558Z Initialized empty Git repository in D:/a/CustomPlayerAnthems/CustomPlayerAnthems/.git/
+2025-06-29T18:49:29.5911824Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/addisonk/CustomPlayerAnthems
+2025-06-29T18:49:29.6628144Z ##[endgroup]
+2025-06-29T18:49:29.6629443Z ##[group]Disabling automatic garbage collection
+2025-06-29T18:49:29.6643280Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2025-06-29T18:49:29.6883201Z ##[endgroup]
+2025-06-29T18:49:29.6884346Z ##[group]Setting up auth
+2025-06-29T18:49:29.6903216Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2025-06-29T18:49:29.7150627Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2025-06-29T18:49:31.5875824Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-06-29T18:49:31.6110055Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2025-06-29T18:49:32.0317266Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2025-06-29T18:49:32.0564784Z ##[endgroup]
+2025-06-29T18:49:32.0565555Z ##[group]Fetching the repository
+2025-06-29T18:49:32.0579226Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9f35befb7f8191af0536e31d909348771736c558:refs/remotes/origin/main
+2025-06-29T18:49:33.2373633Z From https://github.com/addisonk/CustomPlayerAnthems
+2025-06-29T18:49:33.2374451Z  * [new ref]         9f35befb7f8191af0536e31d909348771736c558 -> origin/main
+2025-06-29T18:49:33.2744604Z ##[endgroup]
+2025-06-29T18:49:33.2745496Z ##[group]Determining the checkout info
+2025-06-29T18:49:33.2749831Z ##[endgroup]
+2025-06-29T18:49:33.2761157Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2025-06-29T18:49:33.3197154Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2025-06-29T18:49:33.3410035Z ##[group]Checking out the ref
+2025-06-29T18:49:33.3418929Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+2025-06-29T18:49:33.4145643Z branch 'main' set up to track 'origin/main'.
+2025-06-29T18:49:33.4151699Z Switched to a new branch 'main'
+2025-06-29T18:49:33.4175005Z ##[endgroup]
+2025-06-29T18:49:33.4519154Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2025-06-29T18:49:33.4714720Z 9f35befb7f8191af0536e31d909348771736c558

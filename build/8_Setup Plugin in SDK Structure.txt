@@ -1,0 +1,112 @@
+﻿2025-06-29T18:49:46.1686151Z ##[group]Run Write-Host "🔧 Setting up plugin structure in BakkesMod SDK..."
+2025-06-29T18:49:46.1686743Z [36;1mWrite-Host "🔧 Setting up plugin structure in BakkesMod SDK..."[0m
+2025-06-29T18:49:46.1687189Z [36;1m$pluginDir = "BakkesModSDK-master/PluginFiles/MyBakkesModPlugin"[0m
+2025-06-29T18:49:46.1687620Z [36;1mNew-Item -ItemType Directory -Force -Path $pluginDir[0m
+2025-06-29T18:49:46.1687918Z [36;1m[0m
+2025-06-29T18:49:46.1688099Z [36;1m# Copy all plugin files to SDK structure[0m
+2025-06-29T18:49:46.1688437Z [36;1mCopy-Item "MyBakkesModPlugin/*" $pluginDir -Recurse -Force[0m
+2025-06-29T18:49:46.1688730Z [36;1m[0m
+2025-06-29T18:49:46.1688948Z [36;1mWrite-Host "✅ Plugin files copied to SDK structure"[0m
+2025-06-29T18:49:46.1689296Z [36;1mWrite-Host "=== Plugin Directory Contents ==="[0m
+2025-06-29T18:49:46.1689645Z [36;1mGet-ChildItem -Path $pluginDir | Select-Object Name, Length[0m
+2025-06-29T18:49:46.1723190Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2025-06-29T18:49:46.1723536Z env:
+2025-06-29T18:49:46.1723705Z   CommandPromptType: Native
+2025-06-29T18:49:46.1724029Z   DevEnvDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\
+2025-06-29T18:49:46.1724507Z   ExtensionSdkDir: C:\Program Files (x86)\Microsoft SDKs\Windows Kits\10\ExtensionSDKs
+2025-06-29T18:49:46.1726522Z   EXTERNAL_INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2025-06-29T18:49:46.1728586Z   Framework40Version: v4.0
+2025-06-29T18:49:46.1728829Z   FrameworkDir: C:\Windows\Microsoft.NET\Framework64\
+2025-06-29T18:49:46.1729138Z   FrameworkDir64: C:\Windows\Microsoft.NET\Framework64\
+2025-06-29T18:49:46.1729410Z   FrameworkVersion: v4.0.30319
+2025-06-29T18:49:46.1729611Z   FrameworkVersion64: v4.0.30319
+2025-06-29T18:49:46.1730088Z   FSHARPINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools
+2025-06-29T18:49:46.1730632Z   HTMLHelpDir: C:\Program Files (x86)\HTML Help Workshop
+2025-06-29T18:49:46.1731054Z   IFCPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ifc\x64
+2025-06-29T18:49:46.1733077Z   INCLUDE: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\include;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um
+2025-06-29T18:49:46.1734928Z   is_x64_arch: true
+2025-06-29T18:49:46.1735962Z   LIB: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\lib\um\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+2025-06-29T18:49:46.1738933Z   LIBPATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\ATLMFC\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0;C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+2025-06-29T18:49:46.1742305Z   NETFXSDKDir: C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\
+2025-06-29T18:49:46.1755188Z   Path: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\;C:\Program Files (x86)\HTML Help Workshop;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Team Tools\DiagnosticsHub\Collector;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\Llvm\x64\bin;C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\\x64;C:\Program Files (x86)\Windows Kits\10\bin\\x64;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework64\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin;C:\Program Files\MongoDB\Server\5.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.5.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.4.2\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.4\x64\bin;C:\hostedtoolcache\windows\Python\3.9.13\x64\Scripts;C:\hostedtoolcache\windows\Python\3.9.13\x64;C:\hostedtoolcache\windows\Ruby\3.3.8\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.452-9\x64\bin;C:\Program Files\ImageMagick-7.1.1-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.10\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2025-06-29T18:49:46.1768831Z   Platform: x64
+2025-06-29T18:49:46.1769008Z   UCRTVersion: 10.0.26100.0
+2025-06-29T18:49:46.1769274Z   UniversalCRTSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2025-06-29T18:49:46.1769718Z   VCIDEInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VC\
+2025-06-29T18:49:46.1770203Z   VCINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\
+2025-06-29T18:49:46.1770627Z   VCPKG_ROOT: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\vcpkg
+2025-06-29T18:49:46.1771142Z   VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\
+2025-06-29T18:49:46.1771723Z   VCToolsRedistDir: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Redist\MSVC\14.44.35112\
+2025-06-29T18:49:46.1772219Z   VCToolsVersion: 14.44.35207
+2025-06-29T18:49:46.1772434Z   VisualStudioVersion: 17.0
+2025-06-29T18:49:46.1772769Z   VS170COMNTOOLS: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\
+2025-06-29T18:49:46.1773142Z   VSCMD_ARG_app_plat: Desktop
+2025-06-29T18:49:46.1773337Z   VSCMD_ARG_HOST_ARCH: x64
+2025-06-29T18:49:46.1773534Z   VSCMD_ARG_TGT_ARCH: x64
+2025-06-29T18:49:46.1773708Z   VSCMD_VER: 17.14.5
+2025-06-29T18:49:46.1773973Z   VSINSTALLDIR: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\
+2025-06-29T18:49:46.1774401Z   VSSDK150INSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2025-06-29T18:49:46.1774833Z   VSSDKINSTALL: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VSSDK
+2025-06-29T18:49:46.1775438Z   WindowsLibPath: C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.26100.0
+2025-06-29T18:49:46.1776003Z   WindowsSdkBinPath: C:\Program Files (x86)\Windows Kits\10\bin\
+2025-06-29T18:49:46.1776353Z   WindowsSdkDir: C:\Program Files (x86)\Windows Kits\10\
+2025-06-29T18:49:46.1776629Z   WindowsSDKLibVersion: 10.0.26100.0\
+2025-06-29T18:49:46.1776955Z   WindowsSdkVerBinPath: C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\
+2025-06-29T18:49:46.1777442Z   WindowsSDKVersion: 10.0.26100.0\
+2025-06-29T18:49:46.1777917Z   WindowsSDK_ExecutablePath_x64: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\
+2025-06-29T18:49:46.1778515Z   WindowsSDK_ExecutablePath_x86: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\
+2025-06-29T18:49:46.1778913Z   __DOTNET_ADD_64BIT: 1
+2025-06-29T18:49:46.1779093Z   __DOTNET_PREFERRED_BITNESS: 64
+2025-06-29T18:49:46.1786847Z   __VSCMD_PREINIT_PATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin;C:\Program Files\MongoDB\Server\5.0\bin;C:\aliyun-cli;C:\vcpkg;C:\Program Files (x86)\NSIS\;C:\tools\zstd;C:\Program Files\Mercurial\;C:\hostedtoolcache\windows\stack\3.5.1\x64;C:\cabal\bin;C:\\ghcup\bin;C:\mingw64\bin;C:\Program Files\dotnet;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\R\R-4.4.2\bin\x64;C:\SeleniumWebDrivers\GeckoDriver;C:\SeleniumWebDrivers\EdgeDriver\;C:\SeleniumWebDrivers\ChromeDriver;C:\Program Files (x86)\sbt\bin;C:\Program Files (x86)\GitHub CLI;C:\Program Files\Git\bin;C:\Program Files (x86)\pipx_bin;C:\npm\prefix;C:\hostedtoolcache\windows\go\1.24.4\x64\bin;C:\hostedtoolcache\windows\Python\3.9.13\x64\Scripts;C:\hostedtoolcache\windows\Python\3.9.13\x64;C:\hostedtoolcache\windows\Ruby\3.3.8\x64\bin;C:\Program Files\OpenSSL\bin;C:\tools\kotlinc\bin;C:\hostedtoolcache\windows\Java_Temurin-Hotspot_jdk\8.0.452-9\x64\bin;C:\Program Files\ImageMagick-7.1.1-Q16-HDRI;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\ProgramData\kind;C:\ProgramData\Chocolatey\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\WiX Toolset v3.14\bin;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\pulumi\tools\Pulumi\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.10\bin;C:\Program Files\Microsoft Service Fabric\bin\Fabric\Fabric.Code;C:\Program Files\Microsoft SDKs\Service Fabric\Tools\ServiceFabricLocalClusterManager;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\GitHub CLI\;c:\tools\php;C:\Program Files (x86)\sbt\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\Amazon\SessionManagerPlugin\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\LLVM\bin;C:\Users\runneradmin\.dotnet\tools;C:\Users\runneradmin\.cargo\bin;C:\Users\runneradmin\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft Visual Studio\Installer
+2025-06-29T18:49:46.1794997Z   BAKKESMODSDK: D:\a\CustomPlayerAnthems\CustomPlayerAnthems/BakkesModSDK-master
+2025-06-29T18:49:46.1795338Z ##[endgroup]
+2025-06-29T18:49:46.4625623Z 🔧 Setting up plugin structure in BakkesMod SDK...
+2025-06-29T18:49:46.5036987Z 
+2025-06-29T18:49:46.5043901Z     Directory: D:\a\CustomPlayerAnthems\CustomPlayerAnthems\BakkesModSDK-master\PluginFiles
+2025-06-29T18:49:46.5044564Z 
+2025-06-29T18:49:46.5046316Z [32;1mMode   [0m[32;1m              LastWriteTime[0m [32;1;3m        Length[0m[32;1m Name[0m
+2025-06-29T18:49:46.5047485Z [32;1m----   [0m [32;1m             -------------[0m [32;1m        ------[0m [32;1m----[0m
+2025-06-29T18:49:46.6422153Z d----           6/29/2025  6:49 PM                [44;1mMyBakkesModPlugin[0m
+2025-06-29T18:49:46.6962054Z ✅ Plugin files copied to SDK structure
+2025-06-29T18:49:46.6967862Z === Plugin Directory Contents ===
+2025-06-29T18:49:46.7058308Z 
+2025-06-29T18:49:46.7060044Z [32;1mName   : [0mIMGUI
+2025-06-29T18:49:46.7060492Z [32;1mLength : [0m
+2025-06-29T18:49:46.7060791Z 
+2025-06-29T18:49:46.7083521Z 
+2025-06-29T18:49:46.7085342Z [32;1mName   : [0mGuiBase.cpp
+2025-06-29T18:49:46.7085758Z [32;1mLength : [0m1229
+2025-06-29T18:49:46.7086001Z 
+2025-06-29T18:49:46.7089367Z 
+2025-06-29T18:49:46.7090829Z [32;1mName   : [0mGuiBase.h
+2025-06-29T18:49:46.7091321Z [32;1mLength : [0m806
+2025-06-29T18:49:46.7091701Z 
+2025-06-29T18:49:46.7096281Z 
+2025-06-29T18:49:46.7097758Z [32;1mName   : [0mlogging.h
+2025-06-29T18:49:46.7098269Z [32;1mLength : [0m2412
+2025-06-29T18:49:46.7098494Z 
+2025-06-29T18:49:46.7101673Z 
+2025-06-29T18:49:46.7103440Z [32;1mName   : [0mMyBakkesModPlugin.cpp
+2025-06-29T18:49:46.7103988Z [32;1mLength : [0m7031
+2025-06-29T18:49:46.7104205Z 
+2025-06-29T18:49:46.7107157Z 
+2025-06-29T18:49:46.7108691Z [32;1mName   : [0mMyBakkesModPlugin.h
+2025-06-29T18:49:46.7109501Z [32;1mLength : [0m1509
+2025-06-29T18:49:46.7109712Z 
+2025-06-29T18:49:46.7112554Z 
+2025-06-29T18:49:46.7114468Z [32;1mName   : [0mpch.cpp
+2025-06-29T18:49:46.7115221Z [32;1mLength : [0m18
+2025-06-29T18:49:46.7115427Z 
+2025-06-29T18:49:46.7117881Z 
+2025-06-29T18:49:46.7119404Z [32;1mName   : [0mpch.h
+2025-06-29T18:49:46.7119800Z [32;1mLength : [0m370
+2025-06-29T18:49:46.7119982Z 
+2025-06-29T18:49:46.7122802Z 
+2025-06-29T18:49:46.7125002Z [32;1mName   : [0mplugin.cfg
+2025-06-29T18:49:46.7125507Z [32;1mLength : [0m301
+2025-06-29T18:49:46.7125712Z 
+2025-06-29T18:49:46.7128628Z 
+2025-06-29T18:49:46.7129763Z [32;1mName   : [0mversion.h
+2025-06-29T18:49:46.7130189Z [32;1mLength : [0m178
+2025-06-29T18:49:46.7131062Z 
+2025-06-29T18:49:46.7152153Z 
