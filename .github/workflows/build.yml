@@ -15,6 +15,11 @@ on:
       - ".github/workflows/**"
       - ".github/templates/**"
 
+# 🔧 FIX: Add write permissions for git operations (version management)
+permissions:
+  contents: write
+  actions: read
+
 jobs:
   build:
     # 🎯 CRITICAL: Must use Windows for BakkesMod compatibility
