@@ -16,6 +16,32 @@ void MyBakkesModPlugin::onLoad()
     cvarManager->registerCvar("helloworld_enabled", "1", "Enable/disable Hello World Plugin", true, true, 0, true, 1);
     cvarManager->registerCvar("helloworld_show_window", "0", "Show Hello World window", true, true, 0, true, 1);
     
+    // Register F-key binding CVar (Deja-Vu pattern)
+    keybindCVar = cvarManager->registerCvar("helloworld_keybind", "None", "F-key to toggle Hello World window", true, true);
+    currentKeybind = keybindCVar.getStringValue();
+    
+    // Add callback for keybind changes (following Deja-Vu implementation)
+    keybindCVar.addOnValueChanged([this](std::string oldValue, CVarWrapper cvar) {
+        std::string newBind = cvar.getStringValue();
+        
+        // Unbind old key if it exists and isn't "None"
+        if (!oldValue.empty() && oldValue != "None") {
+            cvarManager->executeCommand("unbind " + oldValue, false);
+            LOG("Unbound old Hello World keybind: " + oldValue);
+        }
+        
+        // Set new keybind if it's not "None"
+        if (newBind != "None") {
+            cvarManager->setBind(newBind, "togglemenu " + GetMenuName());
+            LOG("Set Hello World keybind: " + newBind + " -> togglemenu " + GetMenuName());
+            statusMessage = "Hello World keybind set to " + newBind;
+        } else {
+            statusMessage = "Hello World keybind cleared";
+        }
+        
+        currentKeybind = newBind;
+    });
+    
     // Register console commands with PERMISSION_ALL to work everywhere
     cvarManager->registerNotifier("helloworld_toggle", [this](std::vector<std::string> args) {
         cvarManager->executeCommand("togglemenu " + GetMenuName());
@@ -113,7 +139,38 @@ void MyBakkesModPlugin::RenderSettings()
         cvarManager->getCvar("helloworld_enabled").setValue(pluginEnabled);
     }
     
+    // F-key binding settings (Deja-Vu pattern)
+    ImGui::Text("F-Key Binding");
+    ImGui::Separator();
+    
+    // Available F-keys (from Deja-Vu implementation)
+    const char* keybindOptions[] = { "None", "F1", "F3", "F4", "F5", "F7", "F8", "F9", "F10", "F11", "F12" };
+    int currentKeybindIndex = 0;
+    
+    // Find current selection index
+    for (int i = 0; i < IM_ARRAYSIZE(keybindOptions); i++) {
+        if (currentKeybind == keybindOptions[i]) {
+            currentKeybindIndex = i;
+            break;
+        }
+    }
+    
+    // F-key selection dropdown
+    if (ImGui::Combo("Hello World Keybind", &currentKeybindIndex, keybindOptions, IM_ARRAYSIZE(keybindOptions))) {
+        std::string newKeybind = keybindOptions[currentKeybindIndex];
+        keybindCVar.setValue(newKeybind);
+    }
+    
+    ImGui::Text("Current Keybind: %s", currentKeybind.c_str());
+    if (currentKeybind != "None") {
+        ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "Press %s to toggle Hello World window!", currentKeybind.c_str());
+    }
+    
+    ImGui::Spacing();
+    ImGui::Separator();
+    
     // Standalone window controls
+    ImGui::Text("Window Controls");
     ImGui::Text("Standalone Window Status: %s", this->isWindowOpen ? "OPEN" : "CLOSED");
     
     // Control buttons for standalone window
@@ -136,8 +193,8 @@ void MyBakkesModPlugin::RenderSettings()
     ImGui::Separator();
     ImGui::TextColored(ImVec4(0.5f, 0.8f, 1.0f, 1.0f), "How to Use:");
     ImGui::BulletText("This settings window shows your Hello World functionality");
-    ImGui::BulletText("For STANDALONE window, use: 'togglemenu helloworld'");
-    ImGui::BulletText("Or try console commands: 'helloworld_toggle', 'helloworld_show', 'helloworld_hide'");
+    ImGui::BulletText("Set an F-key above for quick access to standalone window!");
+    ImGui::BulletText("Or use console: 'togglemenu helloworld', 'helloworld_toggle'");
     ImGui::BulletText("The goal counter auto-increments when goals are scored!");
     ImGui::BulletText("Works in all game modes: Freeplay, Training, Spectator, Replay");
 }
@@ -207,11 +264,23 @@ void MyBakkesModPlugin::Render()
     ImGui::Text("Current Status: %s", statusMessage.c_str());
     ImGui::Text("Plugin Version: %s", plugin_version);
     
+    // F-key binding info
+    ImGui::Spacing();
+    ImGui::Separator();
+    ImGui::Text("Keybind Info:");
+    if (currentKeybind != "None") {
+        ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "Bound to: %s", currentKeybind.c_str());
+        ImGui::Text("Press %s to toggle this window!", currentKeybind.c_str());
+    } else {
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "No F-key bound");
+        ImGui::Text("Set one in BakkesMod Settings > Plugins > Hello World Plugin");
+    }
+    
     // Instructions
     ImGui::Spacing();
     ImGui::TextColored(ImVec4(0.5f, 0.8f, 1.0f, 1.0f), "How to Use:");
-    ImGui::BulletText("Use 'togglemenu helloworld' to open this window");
-    ImGui::BulletText("Also available via BakkesMod Settings > Plugins");
+    ImGui::BulletText("Set F-key binding in BakkesMod Settings > Plugins");
+    ImGui::BulletText("Or use console: 'togglemenu helloworld'");
     ImGui::BulletText("Goal counter auto-increments when goals are scored!");
     
     // Update input blocking

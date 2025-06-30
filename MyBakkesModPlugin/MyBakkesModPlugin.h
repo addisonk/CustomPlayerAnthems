@@ -41,4 +41,8 @@ private:
     
     // Hello World functionality
     int helloWorldCounter = 0;
+    
+    // F-key binding functionality (Deja-Vu pattern)
+    std::string currentKeybind = "None";
+    CVarWrapper keybindCVar;
 };
