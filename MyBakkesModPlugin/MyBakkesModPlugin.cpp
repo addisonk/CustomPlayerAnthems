@@ -17,11 +17,12 @@ void MyBakkesModPlugin::onLoad()
     cvarManager->registerCvar("helloworld_show_window", "0", "Show Hello World window", true, true, 0, true, 1);
     
     // Register F-key binding CVar (Deja-Vu pattern)
-    keybindCVar = cvarManager->registerCvar("helloworld_keybind", "None", "F-key to toggle Hello World window", true, true);
-    currentKeybind = keybindCVar.getStringValue();
+    auto cvar = cvarManager->registerCvar("helloworld_keybind", "None", "F-key to toggle Hello World window", true, true);
+    keybindCVar = std::make_shared<CVarWrapper>(cvar);
+    currentKeybind = keybindCVar->getStringValue();
     
     // Add callback for keybind changes (following Deja-Vu implementation)
-    keybindCVar.addOnValueChanged([this](std::string oldValue, CVarWrapper cvar) {
+    keybindCVar->addOnValueChanged([this](std::string oldValue, CVarWrapper cvar) {
         std::string newBind = cvar.getStringValue();
         
         // Unbind old key if it exists and isn't "None"
@@ -158,7 +159,9 @@ void MyBakkesModPlugin::RenderSettings()
     // F-key selection dropdown
     if (ImGui::Combo("Hello World Keybind", &currentKeybindIndex, keybindOptions, IM_ARRAYSIZE(keybindOptions))) {
         std::string newKeybind = keybindOptions[currentKeybindIndex];
-        keybindCVar.setValue(newKeybind);
+        if (keybindCVar) {
+            keybindCVar->setValue(newKeybind);
+        }
     }
     
     ImGui::Text("Current Keybind: %s", currentKeybind.c_str());
