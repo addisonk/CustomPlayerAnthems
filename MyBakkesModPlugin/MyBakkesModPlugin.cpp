@@ -18,18 +18,22 @@ void MyBakkesModPlugin::onLoad()
     
     // Register console commands with PERMISSION_ALL to work everywhere
     cvarManager->registerNotifier("helloworld_toggle", [this](std::vector<std::string> args) {
-        showHelloWorldWindow = !showHelloWorldWindow;
-        LOG("Hello World window toggled: " + std::string(showHelloWorldWindow ? "ON" : "OFF"));
+        cvarManager->executeCommand("togglemenu " + GetMenuName());
+        LOG("Hello World window toggle command executed");
     }, "Toggle Hello World window", PERMISSION_ALL);
     
     cvarManager->registerNotifier("helloworld_show", [this](std::vector<std::string> args) {
-        showHelloWorldWindow = true;
-        LOG("Hello World window shown");
+        if (!this->isWindowOpen) {
+            cvarManager->executeCommand("togglemenu " + GetMenuName());
+        }
+        LOG("Hello World window show command executed");
     }, "Show Hello World window", PERMISSION_ALL);
     
     cvarManager->registerNotifier("helloworld_hide", [this](std::vector<std::string> args) {
-        showHelloWorldWindow = false;
-        LOG("Hello World window hidden");
+        if (this->isWindowOpen) {
+            cvarManager->executeCommand("togglemenu " + GetMenuName());
+        }
+        LOG("Hello World window hide command executed");
     }, "Hide Hello World window", PERMISSION_ALL);
     
     // Hook game events (optional - for demonstration)
@@ -109,19 +113,17 @@ void MyBakkesModPlugin::RenderSettings()
         cvarManager->getCvar("helloworld_enabled").setValue(pluginEnabled);
     }
     
-    // Toggle standalone window (if it works)
-    if (ImGui::Checkbox("Show Standalone Window", &showHelloWorldWindow)) {
-        cvarManager->getCvar("helloworld_show_window").setValue(showHelloWorldWindow);
-    }
+    // Standalone window controls
+    ImGui::Text("Standalone Window Status: %s", this->isWindowOpen ? "OPEN" : "CLOSED");
     
     // Control buttons for standalone window
     ImGui::Spacing();
-    if (ImGui::Button("Test Standalone Window")) {
-        cvarManager->executeCommand("helloworld_show");
+    if (ImGui::Button("Open Standalone Window")) {
+        cvarManager->executeCommand("togglemenu " + GetMenuName());
     }
     ImGui::SameLine();
-    if (ImGui::Button("Hide Standalone Window")) {
-        cvarManager->executeCommand("helloworld_hide");
+    if (ImGui::Button("Use Console Command")) {
+        cvarManager->executeCommand("helloworld_toggle");
     }
     
     // Status display
@@ -133,9 +135,9 @@ void MyBakkesModPlugin::RenderSettings()
     // Instructions
     ImGui::Separator();
     ImGui::TextColored(ImVec4(0.5f, 0.8f, 1.0f, 1.0f), "How to Use:");
-    ImGui::BulletText("This settings window IS your Hello World window!");
-    ImGui::BulletText("Access it anytime via BakkesMod Settings > Plugins > Hello World Plugin");
-    ImGui::BulletText("Try console commands: 'helloworld_toggle', 'helloworld_show', 'helloworld_hide'");
+    ImGui::BulletText("This settings window shows your Hello World functionality");
+    ImGui::BulletText("For STANDALONE window, use: 'togglemenu helloworld'");
+    ImGui::BulletText("Or try console commands: 'helloworld_toggle', 'helloworld_show', 'helloworld_hide'");
     ImGui::BulletText("The goal counter auto-increments when goals are scored!");
     ImGui::BulletText("Works in all game modes: Freeplay, Training, Spectator, Replay");
 }
@@ -153,54 +155,68 @@ void MyBakkesModPlugin::SetImGuiContext(uintptr_t ctx)
 // PluginWindow Implementation
 void MyBakkesModPlugin::Render()
 {
-    if (!showHelloWorldWindow) return;
+    // Follow Deja-Vu pattern for window management
+    if (!this->isWindowOpen) {
+        cvarManager->executeCommand("togglemenu " + GetMenuName());
+        return;
+    }
     
     // Set window flags for a nice Hello World window
     ImGuiWindowFlags windowFlags = ImGuiWindowFlags_None;
     
-    // Create the Hello World window
-    if (ImGui::Begin("Hello World!", &showHelloWorldWindow, windowFlags))
+    // Create the Hello World window using GetMenuTitle() and isWindowOpen reference
+    if (!ImGui::Begin(GetMenuTitle().c_str(), &this->isWindowOpen, windowFlags))
     {
-        // Main Hello World content
-        ImGui::Text("Hello, World!");
-        ImGui::Separator();
-        
-        // Display some information
-        ImGui::Text("Welcome to the Hello World Plugin!");
-        ImGui::Text("This window is accessible everywhere in Rocket League.");
-        
-        ImGui::Spacing();
-        
-        // Interactive elements
-        ImGui::Text("Goal Counter: %d", helloWorldCounter);
-        
-        if (ImGui::Button("Reset Counter"))
-        {
-            helloWorldCounter = 0;
-            LOG("Hello World counter reset");
-        }
-        
-        ImGui::SameLine();
-        if (ImGui::Button("Increment Counter"))
-        {
-            helloWorldCounter++;
-            LOG("Hello World counter incremented to " + std::to_string(helloWorldCounter));
-        }
-        
-        ImGui::Spacing();
-        ImGui::Separator();
-        
-        // Status information
-        ImGui::Text("Plugin Status: %s", pluginEnabled ? "Enabled" : "Disabled");
-        ImGui::Text("Current Status: %s", statusMessage.c_str());
-        
-        // Close button
-        ImGui::Spacing();
-        if (ImGui::Button("Close Window"))
-        {
-            showHelloWorldWindow = false;
-        }
+        // Early out if the window is collapsed, as an optimization
+        this->shouldBlockInput = ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard;
+        ImGui::End();
+        return;
     }
+    
+    // Main Hello World content
+    ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Hello, World!");
+    ImGui::Separator();
+    
+    // Display some information
+    ImGui::Text("Welcome to the Hello World Plugin!");
+    ImGui::Text("This standalone window is accessible everywhere in Rocket League.");
+    
+    ImGui::Spacing();
+    
+    // Interactive elements
+    ImGui::Text("Goal Counter: %d", helloWorldCounter);
+    
+    if (ImGui::Button("Reset Counter"))
+    {
+        helloWorldCounter = 0;
+        LOG("Hello World counter reset");
+    }
+    
+    ImGui::SameLine();
+    if (ImGui::Button("Increment Counter"))
+    {
+        helloWorldCounter++;
+        LOG("Hello World counter incremented to " + std::to_string(helloWorldCounter));
+    }
+    
+    ImGui::Spacing();
+    ImGui::Separator();
+    
+    // Status information
+    ImGui::Text("Plugin Status: %s", pluginEnabled ? "Enabled" : "Disabled");
+    ImGui::Text("Current Status: %s", statusMessage.c_str());
+    ImGui::Text("Plugin Version: %s", plugin_version);
+    
+    // Instructions
+    ImGui::Spacing();
+    ImGui::TextColored(ImVec4(0.5f, 0.8f, 1.0f, 1.0f), "How to Use:");
+    ImGui::BulletText("Use 'togglemenu helloworld' to open this window");
+    ImGui::BulletText("Also available via BakkesMod Settings > Plugins");
+    ImGui::BulletText("Goal counter auto-increments when goals are scored!");
+    
+    // Update input blocking
+    this->shouldBlockInput = ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard;
+    
     ImGui::End();
 }
 
@@ -211,29 +227,29 @@ std::string MyBakkesModPlugin::GetMenuName()
 
 std::string MyBakkesModPlugin::GetMenuTitle()
 {
-    return menuTitle_;
+    return this->menuTitle;
 }
 
 bool MyBakkesModPlugin::ShouldBlockInput()
 {
-    return false; // Don't block input so the game remains playable
+    return this->shouldBlockInput;
 }
 
 bool MyBakkesModPlugin::IsActiveOverlay()
 {
-    return showHelloWorldWindow;
+    return this->isWindowOpen;
 }
 
 void MyBakkesModPlugin::OnOpen()
 {
-    isWindowOpen_ = true;
-    showHelloWorldWindow = true;
+    this->isWindowOpen = true;
+    LOG("Hello World window opened");
 }
 
 void MyBakkesModPlugin::OnClose()
 {
-    isWindowOpen_ = false;
-    showHelloWorldWindow = false;
+    this->isWindowOpen = false;
+    LOG("Hello World window closed");
 }
 
 // Template verification build

@@ -17,10 +17,10 @@ class MyBakkesModPlugin: public BakkesMod::Plugin::BakkesModPlugin, public Bakke
     std::string GetPluginName() override;
     void SetImGuiContext(uintptr_t ctx) override;
 
-    // Inherited via PluginWindow
-    bool isWindowOpen_ = false;
-    bool isMinimized_ = false;
-    std::string menuTitle_ = "Hello World Plugin";
+    // Inherited via PluginWindow  
+    bool isWindowOpen = false;
+    bool shouldBlockInput = false;
+    std::string menuTitle = "Hello World Plugin";
 
     void Render() override;
     std::string GetMenuName() override;
@@ -39,7 +39,6 @@ private:
     float exampleFloat = 1.0f;
     std::string statusMessage = "Plugin loaded successfully!";
     
-    // Hello World window state
-    bool showHelloWorldWindow = false;
+    // Hello World functionality
     int helloWorldCounter = 0;
 };
