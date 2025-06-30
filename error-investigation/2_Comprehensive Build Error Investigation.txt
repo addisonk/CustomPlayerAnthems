@@ -1,109 +1,109 @@
-﻿2025-06-30T01:42:03.8915465Z ##[group]Run echo "🚨 BUILD FAILED - INITIATING ERROR INVESTIGATION"
-2025-06-30T01:42:03.8916728Z [36;1mecho "🚨 BUILD FAILED - INITIATING ERROR INVESTIGATION"[0m
-2025-06-30T01:42:03.8917518Z [36;1mecho "================================================="[0m
-2025-06-30T01:42:03.8918321Z [36;1mecho "Repository: addisonk/CustomPlayerAnthems"[0m
-2025-06-30T01:42:03.8919024Z [36;1mecho "Run ID: 15961884679"[0m
-2025-06-30T01:42:03.8919737Z [36;1mecho "Commit SHA: 3bc2bb36f6b790304cce3ff449845cf63c7b837b"[0m
-2025-06-30T01:42:03.8920584Z [36;1mecho "================================================="[0m
-2025-06-30T01:42:03.8921229Z [36;1m[0m
-2025-06-30T01:42:03.8921708Z [36;1m# Install GitHub CLI[0m
-2025-06-30T01:42:03.8923041Z [36;1mcurl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg[0m
-2025-06-30T01:42:03.8925480Z [36;1mecho "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null[0m
-2025-06-30T01:42:03.8927255Z [36;1msudo apt update[0m
-2025-06-30T01:42:03.8927801Z [36;1msudo apt install gh -y[0m
-2025-06-30T01:42:03.8928303Z [36;1m[0m
-2025-06-30T01:42:03.8928908Z [36;1m# Authenticate with GitHub CLI using GITHUB_TOKEN[0m
-2025-06-30T01:42:03.8929962Z [36;1mecho "***" | gh auth login --with-token[0m
-2025-06-30T01:42:03.8930619Z [36;1m[0m
-2025-06-30T01:42:03.8931193Z [36;1m# Get detailed job failure information[0m
-2025-06-30T01:42:03.8931808Z [36;1mecho "🔍 ANALYZING FAILED JOBS:"[0m
-2025-06-30T01:42:03.8933324Z [36;1mgh run view 15961884679 --json jobs --jq '.jobs[] | select(.conclusion == "failure") | {name: .name, conclusion: .conclusion, steps: [.steps[] | select(.conclusion != "success") | {name: .name, conclusion: .conclusion}]}'[0m
-2025-06-30T01:42:03.8934982Z [36;1m[0m
-2025-06-30T01:42:03.8935390Z [36;1mecho ""[0m
-2025-06-30T01:42:03.8935971Z [36;1mecho "📋 FAILED STEPS ANALYSIS:"[0m
-2025-06-30T01:42:03.8937191Z [36;1mgh run view 15961884679 --json jobs --jq '.jobs[] | select(.conclusion == "failure") | .steps[] | select(.conclusion != "success") | "❌ Step: \(.name) - Status: \(.conclusion)"'[0m
-2025-06-30T01:42:03.8938387Z [36;1m[0m
-2025-06-30T01:42:03.8939199Z [36;1mecho ""[0m
-2025-06-30T01:42:03.8939831Z [36;1mecho "🔗 INVESTIGATION COMMANDS FOR DEVELOPERS:"[0m
-2025-06-30T01:42:03.8940557Z [36;1mecho "==========================================="[0m
-2025-06-30T01:42:03.8941318Z [36;1mecho "# Download build logs for local analysis:"[0m
-2025-06-30T01:42:03.8942264Z [36;1mecho "gh run download 15961884679 --name 'build-logs' || echo 'No build logs artifact'"[0m
-2025-06-30T01:42:03.8943366Z [36;1mecho ""[0m
-2025-06-30T01:42:03.8944294Z [36;1mecho "# View detailed build logs:"[0m
-2025-06-30T01:42:03.8944962Z [36;1mecho "gh run view 15961884679 --log"[0m
-2025-06-30T01:42:03.8945509Z [36;1mecho ""[0m
-2025-06-30T01:42:03.8946090Z [36;1mecho "# Get specific job logs:"[0m
-2025-06-30T01:42:03.8946736Z [36;1mecho "gh run view 15961884679 --log --job build"[0m
-2025-06-30T01:42:03.8947400Z [36;1mecho ""[0m
-2025-06-30T01:42:03.8947922Z [36;1mecho "# Check commit details:"[0m
-2025-06-30T01:42:03.8948931Z [36;1mecho "gh api '/repos/addisonk/CustomPlayerAnthems/commits/3bc2bb36f6b790304cce3ff449845cf63c7b837b'"[0m
-2025-06-30T01:42:03.8950020Z [36;1mecho "==========================================="[0m
-2025-06-30T01:42:03.8950621Z [36;1m[0m
-2025-06-30T01:42:03.8951253Z [36;1mecho "🚨 Use these commands to investigate and fix the build failure!"[0m
-2025-06-30T01:42:03.9349639Z shell: /usr/bin/bash -e {0}
-2025-06-30T01:42:03.9350671Z env:
-2025-06-30T01:42:03.9351538Z   GH_TOKEN: ***
-2025-06-30T01:42:03.9352003Z ##[endgroup]
-2025-06-30T01:42:03.9751232Z 🚨 BUILD FAILED - INITIATING ERROR INVESTIGATION
-2025-06-30T01:42:03.9752584Z =================================================
-2025-06-30T01:42:03.9753959Z Repository: addisonk/CustomPlayerAnthems
-2025-06-30T01:42:03.9755377Z Run ID: 15961884679
-2025-06-30T01:42:03.9756401Z Commit SHA: 3bc2bb36f6b790304cce3ff449845cf63c7b837b
-2025-06-30T01:42:03.9757538Z =================================================
-2025-06-30T01:42:04.0525022Z 4+1 records in
-2025-06-30T01:42:04.0526062Z 4+1 records out
-2025-06-30T01:42:04.0526981Z 2270 bytes (2.3 kB, 2.2 KiB) copied, 0.0878363 s, 25.8 kB/s
-2025-06-30T01:42:04.0886741Z 
-2025-06-30T01:42:04.0887583Z WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-2025-06-30T01:42:04.0888578Z 
-2025-06-30T01:42:04.2218453Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
-2025-06-30T01:42:04.2704352Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
-2025-06-30T01:42:04.2706992Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
-2025-06-30T01:42:04.2782873Z Get:8 https://cli.github.com/packages stable InRelease [3917 B]
-2025-06-30T01:42:04.3345007Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-2025-06-30T01:42:04.3357176Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-2025-06-30T01:42:04.3552704Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
-2025-06-30T01:42:04.3606895Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-2025-06-30T01:42:04.4375141Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [8989 B]
-2025-06-30T01:42:04.4526444Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [24.7 kB]
-2025-06-30T01:42:04.4607951Z Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [37.4 kB]
-2025-06-30T01:42:04.4836604Z Get:12 https://cli.github.com/packages stable/main amd64 Packages [345 B]
-2025-06-30T01:42:04.5907614Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1168 kB]
-2025-06-30T01:42:04.5975768Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [246 kB]
-2025-06-30T01:42:04.6005110Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [161 kB]
-2025-06-30T01:42:04.6114012Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1092 kB]
-2025-06-30T01:42:04.6116180Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [376 kB]
-2025-06-30T01:42:04.6122466Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1274 kB]
-2025-06-30T01:42:04.6193906Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [271 kB]
-2025-06-30T01:42:04.6222953Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
-2025-06-30T01:42:04.6233214Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [22.1 kB]
-2025-06-30T01:42:04.6262965Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-2025-06-30T01:42:04.6889396Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7080 B]
-2025-06-30T01:42:04.6948298Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [16.3 kB]
-2025-06-30T01:42:04.6950284Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
-2025-06-30T01:42:04.6952145Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
-2025-06-30T01:42:04.6963675Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [920 kB]
-2025-06-30T01:42:04.7023772Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [169 kB]
-2025-06-30T01:42:04.7044022Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
-2025-06-30T01:42:04.7054476Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [860 kB]
-2025-06-30T01:42:04.7108514Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.3 kB]
-2025-06-30T01:42:04.7125011Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1235 kB]
-2025-06-30T01:42:04.7207480Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [263 kB]
-2025-06-30T01:42:04.7316505Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
-2025-06-30T01:42:04.7330273Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [212 B]
-2025-06-30T01:42:11.3639513Z Fetched 8613 kB in 1s (6775 kB/s)
-2025-06-30T01:42:12.0287207Z Reading package lists...
-2025-06-30T01:42:12.1725012Z Building dependency tree...
-2025-06-30T01:42:12.1734618Z Reading state information...
-2025-06-30T01:42:12.1896464Z 33 packages can be upgraded. Run 'apt list --upgradable' to see them.
-2025-06-30T01:42:12.2004798Z 
-2025-06-30T01:42:12.2005341Z WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-2025-06-30T01:42:12.2006023Z 
-2025-06-30T01:42:12.2131052Z Reading package lists...
-2025-06-30T01:42:12.3756537Z Building dependency tree...
-2025-06-30T01:42:12.3763741Z Reading state information...
-2025-06-30T01:42:12.5328379Z gh is already the newest version (2.74.2).
-2025-06-30T01:42:12.5780077Z 0 upgraded, 0 newly installed, 0 to remove and 33 not upgraded.
-2025-06-30T01:42:14.2801746Z The value of the GH_TOKEN environment variable is being used for authentication.
-2025-06-30T01:42:14.2802855Z To have GitHub CLI store credentials instead, first clear the value from the environment.
-2025-06-30T01:42:14.2841811Z ##[error]Process completed with exit code 1.
+﻿2025-06-30T02:06:13.0342613Z ##[group]Run echo "🚨 BUILD FAILED - INITIATING ERROR INVESTIGATION"
+2025-06-30T02:06:13.0343765Z [36;1mecho "🚨 BUILD FAILED - INITIATING ERROR INVESTIGATION"[0m
+2025-06-30T02:06:13.0344593Z [36;1mecho "================================================="[0m
+2025-06-30T02:06:13.0345374Z [36;1mecho "Repository: addisonk/CustomPlayerAnthems"[0m
+2025-06-30T02:06:13.0346070Z [36;1mecho "Run ID: 15962167789"[0m
+2025-06-30T02:06:13.0346851Z [36;1mecho "Commit SHA: 0553bf75cc1762a27c929b990813ad02e32c6a56"[0m
+2025-06-30T02:06:13.0347610Z [36;1mecho "================================================="[0m
+2025-06-30T02:06:13.0348302Z [36;1m[0m
+2025-06-30T02:06:13.0348832Z [36;1m# Install GitHub CLI[0m
+2025-06-30T02:06:13.0350503Z [36;1mcurl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg[0m
+2025-06-30T02:06:13.0352794Z [36;1mecho "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null[0m
+2025-06-30T02:06:13.0354498Z [36;1msudo apt update[0m
+2025-06-30T02:06:13.0355094Z [36;1msudo apt install gh -y[0m
+2025-06-30T02:06:13.0355684Z [36;1m[0m
+2025-06-30T02:06:13.0356216Z [36;1m# Authenticate with GitHub CLI using GITHUB_TOKEN[0m
+2025-06-30T02:06:13.0357713Z [36;1mecho "***" | gh auth login --with-token[0m
+2025-06-30T02:06:13.0358369Z [36;1m[0m
+2025-06-30T02:06:13.0358885Z [36;1m# Get detailed job failure information[0m
+2025-06-30T02:06:13.0359830Z [36;1mecho "🔍 ANALYZING FAILED JOBS:"[0m
+2025-06-30T02:06:13.0361310Z [36;1mgh run view 15962167789 --json jobs --jq '.jobs[] | select(.conclusion == "failure") | {name: .name, conclusion: .conclusion, steps: [.steps[] | select(.conclusion != "success") | {name: .name, conclusion: .conclusion}]}'[0m
+2025-06-30T02:06:13.0362813Z [36;1m[0m
+2025-06-30T02:06:13.0363408Z [36;1mecho ""[0m
+2025-06-30T02:06:13.0363951Z [36;1mecho "📋 FAILED STEPS ANALYSIS:"[0m
+2025-06-30T02:06:13.0365231Z [36;1mgh run view 15962167789 --json jobs --jq '.jobs[] | select(.conclusion == "failure") | .steps[] | select(.conclusion != "success") | "❌ Step: \(.name) - Status: \(.conclusion)"'[0m
+2025-06-30T02:06:13.0366502Z [36;1m[0m
+2025-06-30T02:06:13.0366989Z [36;1mecho ""[0m
+2025-06-30T02:06:13.0367570Z [36;1mecho "🔗 INVESTIGATION COMMANDS FOR DEVELOPERS:"[0m
+2025-06-30T02:06:13.0368422Z [36;1mecho "==========================================="[0m
+2025-06-30T02:06:13.0369183Z [36;1mecho "# Download build logs for local analysis:"[0m
+2025-06-30T02:06:13.0370249Z [36;1mecho "gh run download 15962167789 --name 'build-logs' || echo 'No build logs artifact'"[0m
+2025-06-30T02:06:13.0371479Z [36;1mecho ""[0m
+2025-06-30T02:06:13.0371998Z [36;1mecho "# View detailed build logs:"[0m
+2025-06-30T02:06:13.0372714Z [36;1mecho "gh run view 15962167789 --log"[0m
+2025-06-30T02:06:13.0373402Z [36;1mecho ""[0m
+2025-06-30T02:06:13.0373936Z [36;1mecho "# Get specific job logs:"[0m
+2025-06-30T02:06:13.0374655Z [36;1mecho "gh run view 15962167789 --log --job build"[0m
+2025-06-30T02:06:13.0375308Z [36;1mecho ""[0m
+2025-06-30T02:06:13.0375835Z [36;1mecho "# Check commit details:"[0m
+2025-06-30T02:06:13.0376861Z [36;1mecho "gh api '/repos/addisonk/CustomPlayerAnthems/commits/0553bf75cc1762a27c929b990813ad02e32c6a56'"[0m
+2025-06-30T02:06:13.0377949Z [36;1mecho "==========================================="[0m
+2025-06-30T02:06:13.0378593Z [36;1m[0m
+2025-06-30T02:06:13.0379244Z [36;1mecho "🚨 Use these commands to investigate and fix the build failure!"[0m
+2025-06-30T02:06:13.0895581Z shell: /usr/bin/bash -e {0}
+2025-06-30T02:06:13.0896795Z env:
+2025-06-30T02:06:13.0897583Z   GH_TOKEN: ***
+2025-06-30T02:06:13.0898091Z ##[endgroup]
+2025-06-30T02:06:13.1259140Z 🚨 BUILD FAILED - INITIATING ERROR INVESTIGATION
+2025-06-30T02:06:13.2224401Z 4+1 records in
+2025-06-30T02:06:13.2225434Z 4+1 records out
+2025-06-30T02:06:13.2226634Z 2270 bytes (2.3 kB, 2.2 KiB) copied, 0.0996803 s, 22.8 kB/s
+2025-06-30T02:06:13.2228273Z =================================================
+2025-06-30T02:06:13.2229103Z Repository: addisonk/CustomPlayerAnthems
+2025-06-30T02:06:13.2229985Z Run ID: 15962167789
+2025-06-30T02:06:13.2230565Z Commit SHA: 0553bf75cc1762a27c929b990813ad02e32c6a56
+2025-06-30T02:06:13.2231279Z =================================================
+2025-06-30T02:06:13.2430605Z 
+2025-06-30T02:06:13.2431963Z WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+2025-06-30T02:06:13.2432992Z 
+2025-06-30T02:06:13.3162342Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2025-06-30T02:06:13.3442941Z Get:6 https://cli.github.com/packages stable InRelease [3917 B]
+2025-06-30T02:06:13.3553781Z Hit:7 https://packages.microsoft.com/repos/azure-cli noble InRelease
+2025-06-30T02:06:13.3643626Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2025-06-30T02:06:13.4396376Z Get:9 https://cli.github.com/packages stable/main amd64 Packages [345 B]
+2025-06-30T02:06:13.4477213Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2025-06-30T02:06:13.4492875Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2025-06-30T02:06:13.4529346Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2025-06-30T02:06:13.4561037Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2025-06-30T02:06:13.5332312Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [24.7 kB]
+2025-06-30T02:06:13.5371427Z Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [8989 B]
+2025-06-30T02:06:13.5407099Z Get:12 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [37.4 kB]
+2025-06-30T02:06:13.6346353Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1168 kB]
+2025-06-30T02:06:13.6430570Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [246 kB]
+2025-06-30T02:06:13.6452131Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [161 kB]
+2025-06-30T02:06:13.6490630Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1092 kB]
+2025-06-30T02:06:13.6563615Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [376 kB]
+2025-06-30T02:06:13.6599012Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1274 kB]
+2025-06-30T02:06:13.6681955Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [271 kB]
+2025-06-30T02:06:13.6704978Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+2025-06-30T02:06:13.6719131Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [22.1 kB]
+2025-06-30T02:06:13.6727808Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+2025-06-30T02:06:13.7322350Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7080 B]
+2025-06-30T02:06:13.7337163Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [16.3 kB]
+2025-06-30T02:06:13.7348098Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+2025-06-30T02:06:13.7358389Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+2025-06-30T02:06:13.7433338Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [920 kB]
+2025-06-30T02:06:13.7493953Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [169 kB]
+2025-06-30T02:06:13.7514194Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+2025-06-30T02:06:13.7526038Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [860 kB]
+2025-06-30T02:06:13.7583966Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.3 kB]
+2025-06-30T02:06:13.7597827Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1235 kB]
+2025-06-30T02:06:13.7668452Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [263 kB]
+2025-06-30T02:06:13.7693228Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+2025-06-30T02:06:13.7703067Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [212 B]
+2025-06-30T02:06:17.9036766Z Fetched 8613 kB in 1s (7037 kB/s)
+2025-06-30T02:06:18.6317322Z Reading package lists...
+2025-06-30T02:06:18.8277581Z Building dependency tree...
+2025-06-30T02:06:18.8283934Z Reading state information...
+2025-06-30T02:06:18.8510833Z 33 packages can be upgraded. Run 'apt list --upgradable' to see them.
+2025-06-30T02:06:18.8630274Z 
+2025-06-30T02:06:18.8631109Z WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+2025-06-30T02:06:18.8631690Z 
+2025-06-30T02:06:18.8764511Z Reading package lists...
+2025-06-30T02:06:19.0841959Z Building dependency tree...
+2025-06-30T02:06:19.0853899Z Reading state information...
+2025-06-30T02:06:19.3234589Z gh is already the newest version (2.74.2).
+2025-06-30T02:06:19.3721090Z 0 upgraded, 0 newly installed, 0 to remove and 33 not upgraded.
+2025-06-30T02:06:19.6137967Z The value of the GH_TOKEN environment variable is being used for authentication.
+2025-06-30T02:06:19.6139089Z To have GitHub CLI store credentials instead, first clear the value from the environment.
+2025-06-30T02:06:19.6185091Z ##[error]Process completed with exit code 1.

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MyBakkesModPlugin.h"
 
-BAKKESMOD_PLUGIN(CustomPlayerAnthems, "Custom Player Anthems", plugin_version, PLUGINTYPE_FREEPLAY | PLUGINTYPE_CUSTOM_TRAINING | PLUGINTYPE_ONLINE | PLUGINTYPE_SPECTATOR | PLUGINTYPE_REPLAY)
+BAKKESMOD_PLUGIN(CustomPlayerAnthems, "Custom Player Anthems", plugin_version, PLUGINTYPE_FREEPLAY | PLUGINTYPE_CUSTOM_TRAINING | PLUGINTYPE_SPECTATOR | PLUGINTYPE_REPLAY)
 
 std::shared_ptr<CVarManagerWrapper> _globalCvarManager;
 

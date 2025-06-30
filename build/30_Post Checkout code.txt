@@ -1,10 +1,10 @@
-﻿2025-06-30T01:41:57.3280204Z Post job cleanup.
-2025-06-30T01:41:57.6135673Z [command]"C:\Program Files\Git\bin\git.exe" version
-2025-06-30T01:41:57.6379225Z git version 2.50.0.windows.1
-2025-06-30T01:41:57.6467147Z Temporarily overriding HOME='D:\a\_temp\e6cec214-0650-41c5-8b07-176e472cbf92' before making global git config changes
-2025-06-30T01:41:57.6467922Z Adding repository directory to the temporary git global config as a safe directory
-2025-06-30T01:41:57.6481196Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\CustomPlayerAnthems\CustomPlayerAnthems
-2025-06-30T01:41:57.6756478Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
-2025-06-30T01:41:57.7024351Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
-2025-06-30T01:41:58.2700481Z fatal: No url found for submodule path 'BakkesModPlugin-Template' in .gitmodules
-2025-06-30T01:41:58.2798162Z ##[warning]The process 'C:\Program Files\Git\bin\git.exe' failed with exit code 128
+﻿2025-06-30T02:06:06.4056261Z Post job cleanup.
+2025-06-30T02:06:06.7089934Z [command]"C:\Program Files\Git\bin\git.exe" version
+2025-06-30T02:06:06.7358348Z git version 2.50.0.windows.1
+2025-06-30T02:06:06.7437299Z Temporarily overriding HOME='D:\a\_temp\a68602de-22e7-4b90-aab0-d74fc26b382b' before making global git config changes
+2025-06-30T02:06:06.7438471Z Adding repository directory to the temporary git global config as a safe directory
+2025-06-30T02:06:06.7455973Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\CustomPlayerAnthems\CustomPlayerAnthems
+2025-06-30T02:06:06.7800238Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2025-06-30T02:06:06.8184562Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2025-06-30T02:06:07.3401344Z fatal: No url found for submodule path 'BakkesModPlugin-Template' in .gitmodules
+2025-06-30T02:06:07.3499325Z ##[warning]The process 'C:\Program Files\Git\bin\git.exe' failed with exit code 128
